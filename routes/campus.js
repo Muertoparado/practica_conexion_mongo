@@ -1,11 +1,13 @@
+import { ObjectId } from 'mongodb';
+import { con }  from '../db/atlas.js';
+import { limitGrt } from '../limit/config.js';
 import {Router} from 'express';
-import {configGET} from '../middleware/limit.js';
+const appCampus= Router();
 
-const appCampus = Router();
-
-appCampus.get("/",configGET(),(req,res)=>{
+appCampus.get("/", limitGrt(),async(req, res)=>{
+    if(!req.rateLimit) return;
+    res.send("enviado");
     console.log(req.rateLimit);
-    res.send("ajdnkas")
 });
 
 export default appCampus;

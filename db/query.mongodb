@@ -1,0 +1,35 @@
+use("practica1");
+db.createCollection("menos",{
+    capped: true,
+    size: 100,
+    max: 5
+});
+
+use("practica1");
+db.usuario.insertMany([
+    {
+        "nombre":"aaaa",
+        "edad":23
+    },
+    {
+        "nombre":"bbbab",
+        "edad":40
+    },
+    {
+        "nombre":"ccccc",
+        "apellido":"x",
+        "edad":2
+    },
+    {
+        "nombre":"ddddd",
+        "edad":78
+    },
+    {
+        "nombre":"ffff",
+        "apellido":"qdqwdqwdqwdqwdqwdqwdqwdcasdcsdcsdcsdcsdqwdqwdqwdqw"
+    },
+    {
+        "nombre":"dsccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+
+    }
+]);
