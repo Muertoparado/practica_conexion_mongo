@@ -1,12 +1,38 @@
-use("practica1");
-db.createCollection("menos",{
-    capped: true,
-    size: 100,
-    max: 5
-});
+db.createCollection("menos", {
+  
+    validator: {
+      $jsonSchema: {
+        bsonType: "object",
+        required: ["name", "apellido", "edad", "email"],
+        properties: {
+          name: {
+            bsonType: "string",
+            maxLength: 10,
+            description: "Name must be a string and is required"
+          },
+          apellido: {
+            bsonType: "string",
+            maxLength: 10,
+            description: "apellido must be a string and is required"
+          },
+          edad: {
+            bsonType: "int",
+            maximum: 99,
+            description: "edad must be an integer less than or equal to 99"
+          },
+          email: {
+            bsonType: "string",
+            pattern: "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$",
+            description: "email must be a valid email address"
+          }
+        }
+      }
+    }
+  });
+  
 
 use("practica1");
-db.usuario.insertMany([
+db.menos.insertMany([
     {
         "nombre":"aaaa",
         "edad":23
